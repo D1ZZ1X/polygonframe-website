@@ -9,8 +9,9 @@
   <meta property="og:title" content="Contact | Polygon Frame">
   <meta property="og:description" content="Get in touch with Polygon Frame about photo, video or audio work.">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="css/styles.css?v=7">
-  <script src="js/nav.js?v=7" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=8">
+  <script src="js/nav.js?v=8" defer></script>
+  <script src="js/contact.js?v=8" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -39,14 +40,21 @@
     <section class="hero">
       <div class="container">
         <h1>Contact</h1>
-        <p>Tell me about your project, event or date and I'll get back to you.</p>
+        <p>Tell us about your project, event or date and we'll get back to you.</p>
       </div>
     </section>
     <section class="section" aria-label="Contact form">
       <div class="container">
         <div class="prose">
-          <!-- The form needs a handler (e.g. Netlify Forms or Formspree) before it can send. -->
-          <form action="#" method="post">
+            <!-- Messages are relayed to Anton's Gmail by Formspree. Without JavaScript
+               the form posts normally and Formspree shows its own thank-you page. -->
+          <form id="contact-form" action="https://formspree.io/f/xkjjjoog" method="POST">
+            <input type="hidden" name="_subject" value="New Polygon Frame inquiry">
+            <!-- Spam trap: hidden from people, bots fill it in and get ignored. -->
+            <div class="visually-hidden" aria-hidden="true">
+              <label for="website">Leave this empty</label>
+              <input id="website" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+            </div>
             <div class="form-field">
               <label for="name">Name</label>
               <input id="name" name="name" type="text" autocomplete="name" required>
@@ -60,6 +68,7 @@
               <textarea id="message" name="message" rows="6" required></textarea>
             </div>
             <button class="button" type="submit">Send</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
           </form>
         </div>
       </div>
