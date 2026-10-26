@@ -274,8 +274,28 @@ audio { width: 100%; margin-top: var(--space-2); }
   border-radius: var(--radius);
 }
 
-/* ---- 7. Footer ---------------------------------------------------------- */
+/* ---- 7. Home page background photo --------------------------------------
+   One photo, centered, never tiled, and fixed in place while the page
+   scrolls over it. A position:fixed layer is used instead of
+   background-attachment:fixed, which iPhones ignore. The light dark wash
+   keeps white text readable over the bright parts of the photo. */
+.home main { position: relative; isolation: isolate; }
+.home main::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../images/home-background-small.jpg") center / cover no-repeat;
+}
+.home .hero h1, .home .hero p, .home .section h2 { text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7); }
+.home .hero p { color: var(--color-text); }
+
+/* ---- 8. Footer ---------------------------------------------------------- */
 .site-footer {
+  position: relative;
+  background: var(--color-bg);
   border-top: 1px solid var(--color-border);
   padding-block: var(--space-3);
   color: var(--color-text-muted);
@@ -290,6 +310,11 @@ audio { width: 100%; margin-top: var(--space-2); }
   .container { padding-inline: var(--space-3); }
   .grid { grid-template-columns: repeat(2, 1fr); }
   .gallery { grid-template-columns: repeat(3, 1fr); }
+  .home main::before {
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url("../images/home-background.jpg") center / cover no-repeat;
+  }
   .photo-wall { --row-height: 14rem; }
 }
 
