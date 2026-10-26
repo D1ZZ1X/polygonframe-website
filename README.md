@@ -11,6 +11,11 @@ Hand-written HTML/CSS starter. No build step: open `index.html` in a browser.
 - `js/nav.js`: phone menu toggle (the site still works with JS off)
 - `images/`: put optimized photos here
 
+## Updating CSS or JS
+Browsers keep old copies of `styles.css` and the scripts for up to 10 minutes.
+Every page links them with a version number (`styles.css?v=5`). After changing
+CSS or JS, bump that number on all pages so visitors get the new file at once.
+
 ## Layouts
 - Phone (under 640px): single column, Menu button
 - Tablet (640px+): two-column grid
