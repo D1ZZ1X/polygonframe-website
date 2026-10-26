@@ -1,0 +1,262 @@
+/* ==========================================================================
+   Polygon Frame: base stylesheet
+   One stylesheet for every screen. The base rules cover phones; the
+   media queries at the bottom add the tablet and desktop layouts.
+   ========================================================================== */
+
+/* ---- 1. Design tokens --------------------------------------------------
+   Brand palette. Change a value here and every page updates. Keep text/background pairs at a 4.5:1 contrast ratio or better. */
+:root {
+  --color-bg: #212121;           /* brand background */
+  --color-text: #ffffff;         /* brand text */
+  --color-accent: #cfae6b;       /* brand gold: borders, menus, buttons, links */
+  --color-accent-contrast: #212121;
+  --color-border: var(--color-accent);
+  --color-surface: #2a2a2a;      /* cards and form fields, a step lighter than the background */
+  --color-placeholder: #383838;  /* empty media boxes */
+  --color-text-muted: #d0d0d0;
+
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: var(--font-body);
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+
+  --radius: 6px;
+  --max-width: 72rem;
+  --header-height: 4rem;
+}
+
+/* ---- 2. Reset ----------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;           /* 16px base, never smaller on phones */
+  line-height: 1.6;
+}
+img, picture, video, svg { display: block; max-width: 100%; height: auto; }
+input, button, textarea, select { font: inherit; }
+h1, h2, h3 { font-family: var(--font-heading); line-height: 1.2; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---- 3. Accessibility helpers ------------------------------------------ */
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -3rem;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border-radius: var(--radius);
+  z-index: 100;
+}
+.skip-link:focus { top: var(--space-1); }
+
+:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+a { color: var(--color-accent); text-underline-offset: 0.2em; }
+
+/* ---- 4. Layout ---------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-2);
+}
+.section { padding-block: var(--space-4); }
+.section h2 { margin-bottom: var(--space-2); }
+
+/* ---- 5. Header & navigation -------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+}
+.logo {
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* Phone: menu button toggles a full-width dropdown. Without JS the
+   menu stays visible (see .no-js rule) so nothing is ever unreachable. */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 44px; min-height: 44px;   /* touch target */
+  padding: 0 var(--space-1);
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text);
+  cursor: pointer;
+}
+.site-nav ul {
+  list-style: none;
+  padding: 0;
+}
+.site-nav a {
+  display: block;
+  padding: var(--space-2);
+  color: var(--color-text);
+  text-decoration: none;
+}
+.site-nav a[aria-current="page"] { color: var(--color-accent); }
+
+.js .site-nav {
+  display: none;
+  position: absolute;
+  inset: var(--header-height) 0 auto 0;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+.js .site-nav.is-open { display: block; }
+.no-js .nav-toggle { display: none; }
+
+/* ---- 6. Components ------------------------------------------------------ */
+.hero { padding-block: var(--space-5); }
+.hero h1 { font-size: clamp(2rem, 8vw, 4rem); }
+.hero p { color: var(--color-text-muted); max-width: 40ch; margin-top: var(--space-2); }
+
+.button {
+  display: inline-block;
+  margin-top: var(--space-3);
+  padding: 0.75rem 1.5rem;
+  min-height: 44px;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border: 0;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: 1fr;
+}
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.card-body { padding: var(--space-2); }
+.card h3 { font-size: 1.125rem; }
+.card p { color: var(--color-text-muted); }
+
+/* Media placeholders keep a fixed shape so the page doesn't jump while
+   images and videos load. */
+.media-frame {
+  aspect-ratio: 16 / 9;
+  background: var(--color-placeholder);
+  display: grid;
+  place-items: center;
+  color: var(--color-text-muted);
+}
+.media-frame img, .media-frame video, .media-frame iframe {
+  width: 100%; height: 100%; object-fit: cover; border: 0;
+}
+
+/* Square photo tiles for gallery pages */
+.gallery {
+  display: grid;
+  gap: var(--space-1);
+  grid-template-columns: repeat(2, 1fr);
+}
+.gallery-item { margin: 0; }
+.media-frame--square { aspect-ratio: 1 / 1; }
+
+.card h3 a { color: inherit; text-decoration: none; }
+.card h3 a:hover { color: var(--color-accent); }
+
+.audio-placeholder {
+  margin-top: var(--space-2);
+  padding: var(--space-2);
+  background: var(--color-placeholder);
+  border-radius: var(--radius);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+audio { width: 100%; margin-top: var(--space-2); }
+
+.prose { max-width: 40rem; }
+
+/* Forms */
+.form-field { display: grid; gap: 0.25rem; margin-bottom: var(--space-2); }
+.form-field input, .form-field textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* ---- 7. Footer ---------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+.social-links { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; padding: 0; margin-bottom: var(--space-2); }
+
+/* ==========================================================================
+   Tablet (≥ 640px)
+   ========================================================================== */
+@media (min-width: 40em) {
+  .container { padding-inline: var(--space-3); }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ==========================================================================
+   Desktop (≥ 960px): nav becomes an inline row, grid goes to 3 columns
+   ========================================================================== */
+@media (min-width: 60em) {
+  .nav-toggle { display: none; }
+  .js .site-nav, .site-nav {
+    display: block;
+    position: static;
+    border: 0;
+    background: none;
+  }
+  .site-nav ul { display: flex; gap: var(--space-1); }
+  .site-nav a { padding: var(--space-1) var(--space-2); }
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  .grid--4 { grid-template-columns: repeat(4, 1fr); }
+  .gallery { gap: var(--space-2); }
+  .section { padding-block: var(--space-5); }
+}
