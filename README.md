@@ -5,7 +5,8 @@ Hand-written HTML/CSS starter. No build step: open `index.html` in a browser.
 ## Files
 - `index.html`: home page (Polygon Frame), served at polygonframe.com
 - `about.html`: bio
-- `contact.html`: contact form (needs a form service such as Formspree before it can send)
+- `contact.html`: contact form, sent to Gmail via Formspree (formspree.io/f/xkjjjoog)
+- `js/contact.js`: sends the form in the background and shows a thank-you or error message
 - `gallery.html`: Main Gallery
 - `weddings.html`, `video.html`, `audio.html`
 - `css/styles.css`: the only stylesheet. Brand colors and fonts live in `:root` at the top.
