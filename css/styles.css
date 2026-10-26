@@ -272,8 +272,24 @@ audio { width: 100%; margin-top: var(--space-2); }
 .viewer-prev { left: var(--space-1); }
 .viewer-next { right: var(--space-1); }
 
-/* Forms */
-.form-status { margin-top: var(--space-2); }
+/* Larger social links (About page). Footer keeps its simple text links. */
+.social-buttons { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.social-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius);
+  color: var(--color-text);
+  text-decoration: none;
+}
+.social-button:hover { background: var(--color-accent); color: var(--color-accent-contrast); }
+.social-button:hover .handle { color: inherit; }
+.handle { color: var(--color-text-muted); font-size: 0.875rem; }
+
+/* Forms */.form-status { margin-top: var(--space-2); }
 .optional { color: var(--color-text-muted); font-size: 0.875rem; }
 .form-status:empty { display: none; }
 .form-status.is-success, .form-status.is-error {
