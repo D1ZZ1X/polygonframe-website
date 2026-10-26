@@ -4,7 +4,8 @@ Hand-written HTML/CSS starter. No build step: open `index.html` in a browser.
 
 ## Files
 - `index.html`: home page (Polygon Frame), served at polygonframe.com
-- `about.html`: bio plus the contact form (`about.html#contact`)
+- `about.html`: bio
+- `contact.html`: contact form (needs a form service such as Formspree before it can send)
 - `gallery.html`: Main Gallery
 - `weddings.html`, `video.html`, `audio.html`
 - `css/styles.css`: the only stylesheet. Brand colors and fonts live in `:root` at the top.
@@ -13,7 +14,7 @@ Hand-written HTML/CSS starter. No build step: open `index.html` in a browser.
 
 ## Updating CSS or JS
 Browsers keep old copies of `styles.css` and the scripts for up to 10 minutes.
-Every page links them with a version number (`styles.css?v=5`). After changing
+Every page links them with a version number (`styles.css?v=6`). After changing
 CSS or JS, bump that number on all pages so visitors get the new file at once.
 
 ## Layouts
