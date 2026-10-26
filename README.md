@@ -14,7 +14,7 @@ Hand-written HTML/CSS starter. No build step: open `index.html` in a browser.
 
 ## Updating CSS or JS
 Browsers keep old copies of `styles.css` and the scripts for up to 10 minutes.
-Every page links them with a version number (`styles.css?v=6`). After changing
+Every page links them with a version number (`styles.css?v=7`). After changing
 CSS or JS, bump that number on all pages so visitors get the new file at once.
 
 ## Layouts
