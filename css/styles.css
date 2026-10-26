@@ -274,6 +274,7 @@ audio { width: 100%; margin-top: var(--space-2); }
 
 /* Forms */
 .form-status { margin-top: var(--space-2); }
+.optional { color: var(--color-text-muted); font-size: 0.875rem; }
 .form-status:empty { display: none; }
 .form-status.is-success, .form-status.is-error {
   padding: var(--space-1) var(--space-2);
