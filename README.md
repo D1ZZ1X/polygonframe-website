@@ -12,6 +12,11 @@ Hand-written HTML/CSS starter. No build step: open `index.html` in a browser.
 - `js/nav.js`: phone menu toggle (the site still works with JS off)
 - `images/`: put optimized photos here
 
+## Workflow: preview first, go live on request
+- All work happens on the `preview` branch. GitHub Pages only publishes `main`, so preview changes are saved but not live.
+- After each change, the private preview page is refreshed: https://claude.ai/artifact/Vt6Dy91FrtxUz27ptvM4xp
+- When Anton says a build is ready, `preview` is merged into `main` and it goes live at polygonframe.com.
+
 ## Updating CSS or JS
 Browsers keep old copies of `styles.css` and the scripts for up to 10 minutes.
 Every page links them with a version number (`styles.css?v=7`). After changing
