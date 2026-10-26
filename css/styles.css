@@ -213,6 +213,56 @@ audio { width: 100%; margin-top: var(--space-2); }
 
 .prose { max-width: 40rem; }
 
+/* Photo wall: justified rows like a contact sheet. Every photo keeps its
+   natural shape (no cropping); each one's width follows its aspect ratio,
+   set per photo as --ar (width / height) in gallery.html. */
+.photo-wall {
+  --row-height: 9rem;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+.photo-wall li {
+  flex-grow: var(--ar);
+  flex-basis: calc(var(--ar) * var(--row-height));
+}
+/* Keeps the last row from stretching a lone photo across the page. */
+.photo-wall::after { content: ""; flex-grow: 999; }
+.photo-link { display: block; border: 1px solid transparent; border-radius: var(--radius); overflow: hidden; }
+.photo-link:hover { border-color: var(--color-accent); }
+.photo-link img { width: 100%; }
+
+/* Full-screen photo viewer (js/gallery.js) */
+.viewer {
+  width: 100vw; height: 100vh;
+  max-width: none; max-height: none;
+  margin: 0; padding: var(--space-4) var(--space-2);
+  border: 0;
+  background: rgba(0, 0, 0, 0.94);
+  color: var(--color-text);
+}
+.viewer[open] { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.viewer::backdrop { background: rgba(0, 0, 0, 0.94); }
+.viewer-img { max-width: 100%; max-height: calc(100vh - 7rem); width: auto; height: auto; object-fit: contain; }
+.viewer-count { margin-top: var(--space-1); color: var(--color-text-muted); font-size: 0.875rem; }
+.viewer-btn {
+  position: absolute;
+  min-width: 44px; min-height: 44px;
+  background: rgba(33, 33, 33, 0.8);
+  color: var(--color-text);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.viewer-close { top: var(--space-1); right: var(--space-1); }
+.viewer-prev, .viewer-next { top: 50%; transform: translateY(-50%); }
+.viewer-prev { left: var(--space-1); }
+.viewer-next { right: var(--space-1); }
+
 /* Forms */
 .form-field { display: grid; gap: 0.25rem; margin-bottom: var(--space-2); }
 .form-field input, .form-field textarea {
@@ -240,6 +290,7 @@ audio { width: 100%; margin-top: var(--space-2); }
   .container { padding-inline: var(--space-3); }
   .grid { grid-template-columns: repeat(2, 1fr); }
   .gallery { grid-template-columns: repeat(3, 1fr); }
+  .photo-wall { --row-height: 14rem; }
 }
 
 /* ==========================================================================
@@ -258,5 +309,6 @@ audio { width: 100%; margin-top: var(--space-2); }
   .grid { grid-template-columns: repeat(3, 1fr); }
   .grid--4 { grid-template-columns: repeat(4, 1fr); }
   .gallery { gap: var(--space-2); }
+  .photo-wall { --row-height: 20rem; gap: var(--space-2); }
   .section { padding-block: var(--space-5); }
 }
